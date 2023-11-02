@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  app:
+    image: tomcat:10-jdk17-openjdk-buster
+    ports:
+      - 8080:8080
+    command: bash -c "cd ../scripts && ./sync-tomcat-files.sh ./ && cd ../tomcat/bin && ./catalina.sh jpda run"
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps/
+      - ./scripts:/usr/local/scripts/
+      - ./lib:/usr/local/tomcat/app-lib/
+      - ./conf:/usr/local/tomcat/app-conf/
+    networks:
+      - postgres_default
+
+networks:
+  postgres_default:
+    external: true
