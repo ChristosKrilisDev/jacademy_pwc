@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useHistory, useParams} from 'react-router-dom';
 import {
     createEmployee,
     getEmployeeById,
@@ -7,7 +7,7 @@ import {
 } from '../services/EmployeeService';
 
 const CreateEmployeeComponent = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const history = useHistory();
 
     const [employee, setEmployee] = useState({
@@ -29,10 +29,10 @@ const CreateEmployeeComponent = () => {
 
     const saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        const { firstName, lastName, emailId } = employee;
+        const {firstName, lastName, emailId} = employee;
 
         if (isAddMode) {
-            createEmployee({ firstName, lastName, emailId }).then(() => {
+            createEmployee({firstName, lastName, emailId}).then(() => {
                 history.push('/employees');
             });
         } else {
@@ -42,16 +42,26 @@ const CreateEmployeeComponent = () => {
         }
     };
 
+    function IsEmail(input) {
+        const emailPattern = /^[A-Za-z0-9_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        return emailPattern.test(input);
+    }
+
+    function IsTextField(input) {
+        const textOnlyPattern = /^[A-Za-z]+$/;
+        return textOnlyPattern.test(input);
+    }
+
     const handleInputChange = (e) => {
+        const {name, value} = e.target;
+
+        // Check if the input is valid (only alphabetic characters)
+        //TODO : mails may use numerics and underscore
         
-        //TODO : test
-        // if (/[0-9]/.e(value)) {
-        //     alert("Should not contain numeric characters");
-        //     return;
-        // }
+        if(IsEmail(value)){}
+        if(IsTextField(value)){}
         
-        const { name, value } = e.target;
-        setEmployee({ ...employee, [name]: value });
+        setEmployee({...employee, [name]: value});
     };
 
     const cancel = () => {
@@ -59,12 +69,13 @@ const CreateEmployeeComponent = () => {
     };
 
     const getTitle = () => {
-        return isAddMode ? <h3 className="mt-3 text-center">Add Employee</h3> : <h3 className="mt-3 text-center">Update Employee</h3>;
+        return isAddMode ? <h3 className="mt-3 text-center">Add Employee</h3> :
+            <h3 className="mt-3 text-center">Update Employee</h3>;
     };
 
     return (
         <div>
-            <br />
+            <br/>
             <div className="container">
                 <div className="row">
                     <div className="card col-md-6 offset-md-3 offset-md-3">
@@ -74,7 +85,6 @@ const CreateEmployeeComponent = () => {
                                 <div className="form-group">
                                     <label>First Name:</label>
                                     <input
-                                        //TODO : don't allow numeric chars for names
                                         type="text"
                                         name="firstName"
                                         placeholder="First Name"
@@ -86,8 +96,7 @@ const CreateEmployeeComponent = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Last Name:</label>
-                                    <inputz
-                                        //TODO : don't allow numeric chars for names
+                                    <input
                                         type="text"
                                         name="lastName"
                                         placeholder="Last Name"
@@ -100,7 +109,6 @@ const CreateEmployeeComponent = () => {
                                 <div className="form-group">
                                     <label>Email ID:</label>
                                     <input
-                                        //TODO : use email pattern to validate the email
                                         type="email"
                                         name="emailId"
                                         placeholder="Email Address"
@@ -117,7 +125,7 @@ const CreateEmployeeComponent = () => {
                                 <button
                                     className="btn btn-danger"
                                     onClick={cancel}
-                                    style={{ marginLeft: "10px" }}
+                                    style={{marginLeft: "10px"}}
                                 >
                                     Cancel
                                 </button>
