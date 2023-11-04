@@ -18,7 +18,8 @@ import pwc.jacademy.demo.exception.ResourceNotFoundException;
 import pwc.jacademy.demo.model.Employee;
 import pwc.jacademy.demo.repository.EmployeeRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://example.com"})
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
