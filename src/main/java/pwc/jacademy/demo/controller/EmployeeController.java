@@ -19,7 +19,8 @@ import pwc.jacademy.demo.model.Employee;
 import pwc.jacademy.demo.repository.EmployeeRepository;
 
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = {"http://localhost:3000", "https://example.com"})
+// @CrossOrigin(origins = {"http://localhost:3000", "https://example.com"})
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
