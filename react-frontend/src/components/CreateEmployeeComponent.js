@@ -58,8 +58,8 @@ const CreateEmployeeComponent = () => {
         // Check if the input is valid (only alphabetic characters)
         //TODO : mails may use numerics and underscore
         
-        if(IsEmail(value)){}
-        if(IsTextField(value)){}
+        // if(IsEmail(value)){}
+        // if(IsTextField(value)){}
         
         setEmployee({...employee, [name]: value});
     };
@@ -83,7 +83,7 @@ const CreateEmployeeComponent = () => {
                         <div className="card-body">
                             <form onSubmit={saveOrUpdateEmployee}>
                                 <div className="form-group">
-                                    <label>First Name:</label>
+                                    <label>First Name :) :</label>
                                     <input
                                         type="text"
                                         name="firstName"
