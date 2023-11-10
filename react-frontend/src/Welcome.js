@@ -15,7 +15,7 @@ const Welcome = () => {
                 />
                 <h1 className="mb-4">Welcome to PwC Java Academy</h1>
                 <p className="mb-4">Explore the Future of Employee Management</p>
-                <p className="mb-4">Panagioths PANAGAKOPOYLOS MONO RE MOYNIA</p>
+                <p className="mb-4">When you know nothing matters, the universe is yours</p>
                 <Link to="/employees" className="btn btn-primary btn-lg">
                     Get Started
                 </Link>
