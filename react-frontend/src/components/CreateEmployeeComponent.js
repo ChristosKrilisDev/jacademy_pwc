@@ -41,15 +41,9 @@ const CreateEmployeeComponent = () => {
             });
         }
     };
-
-    function IsEmail(input) {
-        const emailPattern = /^[A-Za-z0-9_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-        return emailPattern.test(input);
-    }
-
-    function IsTextField(input) {
-        const textOnlyPattern = /^[A-Za-z]+$/;
-        return textOnlyPattern.test(input);
+    
+    function IsValidPattern(input, pattern) {
+        return pattern.test(input);
     }
 
     const handleInputChange = (e) => {
@@ -57,9 +51,16 @@ const CreateEmployeeComponent = () => {
 
         // Check if the input is valid (only alphabetic characters)
         //TODO : mails may use numerics and underscore
-        
-        // if(IsEmail(value)){}
-        // if(IsTextField(value)){}
+        if(e.target.name === "firstName" || e.target.name === "lastName") 
+        {
+            const textOnlyPattern = /^[A-Za-z]*$/;
+            if(!IsValidPattern(value, textOnlyPattern)) return;
+        }
+        else if(e.target.name === "emailId")
+        {
+            const emailPattern = /^([A-Za-z0-9_.-]*@)?([A-Za-z0-9.-]*\.)?([A-Za-z]*)?$/;
+            if(!IsValidPattern(value, emailPattern)) return;
+        }
         
         setEmployee({...employee, [name]: value});
     };
@@ -83,7 +84,7 @@ const CreateEmployeeComponent = () => {
                         <div className="card-body">
                             <form onSubmit={saveOrUpdateEmployee}>
                                 <div className="form-group">
-                                    <label>First Name :) :</label>
+                                    <label>First Name :</label>
                                     <input
                                         type="text"
                                         name="firstName"
@@ -107,11 +108,11 @@ const CreateEmployeeComponent = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Email ID:</label>
+                                    <label>Email Address:</label>
                                     <input
                                         type="email"
                                         name="emailId"
-                                        placeholder="Email Address"
+                                        placeholder="sample@email.com"
                                         className="form-control"
                                         required
                                         value={employee.emailId}
