@@ -58,7 +58,7 @@ const CreateEmployeeComponent = () => {
         }
         else if(e.target.name === "emailId")
         {
-            const emailPattern = /^([A-Za-z0-9_.-]*@)?([A-Za-z0-9.-]*\.)?([A-Za-z]*)?$/;
+            const emailPattern = /^([A-Za-z0-9_.-]*@)?([A-Za-z0-9.-]*\.)?([A-Za-z_]+[A-Za-z0-9_]*)?$/;
             if(!IsValidPattern(value, emailPattern)) return;
         }
         
