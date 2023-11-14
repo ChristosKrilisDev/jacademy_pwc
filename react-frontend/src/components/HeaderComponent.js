@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 const HeaderComponent = () => {
 
@@ -17,13 +17,19 @@ const HeaderComponent = () => {
               <div style={showMenu ? {display: "block"} : {display: "none"}} className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
-                    <Link to="/" className="nav-link">Home</Link>
+                    <NavLink exact to="/" className="nav-link" activeClassName="active">
+                      Home
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <Link to="/employees" className="nav-link">Employees</Link>
+                    <NavLink to="/employees" className="nav-link" activeClassName="active">
+                      Employees
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <Link to="/about" className="nav-link">About Us</Link>
+                    <NavLink to="/about" className="nav-link" activeClassName="active">
+                      About Us
+                    </NavLink>
                   </li>
                 </ul>
               </div>
